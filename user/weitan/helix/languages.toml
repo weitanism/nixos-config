@@ -1,0 +1,96 @@
+[[language]]
+name = "cpp"
+auto-format = true
+
+[[language]]
+name = "c"
+auto-format = true
+
+[[language]]
+name = "tsx"
+scope = "source.tsx"
+injection-regex = "(tsx)" # |typescript
+file-types = ["tsx"]
+roots = []
+# TODO: highlights-params
+language-server = { command = "typescript-language-server", args = [
+  "--stdio",
+  "--tsserver-path",
+  "node_modules/typescript/bin/tsserver",
+], language-id = "typescriptreact" }
+indent = { tab-width = 2, unit = "  " }
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+# formatter = { command = "eslint_d", args = ["--fix-to-stdout", "--stdin"] }
+# formatter = { command = "bash", args = ["/home/weitan/scripts/print-arguments.sh"] }
+auto-format = true
+
+# [[language]]
+# name = "tsx"
+# scope = "source.tsx"
+# injection-regex = "(tsx)" # |typescript
+# file-types = ["tsx"]
+# roots = ["yarn.lock"]
+# language-server = { command = "vscode-eslint-language-server", args = ["--stdio"], language-id = "typescriptreact" }
+# indent = { tab-width = 2, unit = "  " }
+# config = { workingDirectory = "./", nodePath = "/etc/profiles/per-user/weitan/bin/node" }
+
+[[grammar]]
+name = "tsx"
+source = { git = "https://github.com/tree-sitter/tree-sitter-typescript", rev = "6aac031ad88dd6317f02ac0bb27d099a553a7d8c", subpath = "tsx" }
+
+[[language]]
+name = "javascript"
+auto-format = true
+
+[[language]]
+name = "html"
+auto-format = true
+
+[[language]]
+name = "css"
+auto-format = true
+
+[[language]]
+name = "scss"
+auto-format = true
+
+[[language]]
+name = "python"
+auto-format = true
+
+[[language]]
+name = "nix"
+auto-format = true
+
+[[language]]
+name = "bash"
+auto-format = true
+formatter = { command = "shfmt", args = ["--indent=2" ,"--case-indent", "--binary-next-line"] }
+
+[[language]]
+name = "fish"
+auto-format = true
+
+[[language]]
+name = "json"
+auto-format = true
+
+[[language]]
+name = "protobuf"
+auto-format = true
+
+[[language]]
+name = "haskell"
+auto-format = true
+
+[[language]]
+name = "markdown"
+auto-format = true
+
+[[language]]
+name = "dockerfile"
+auto-format = true
+
+[[language]]
+name = "starlark"
+auto-format = true

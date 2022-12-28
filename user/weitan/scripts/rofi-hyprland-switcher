@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+# This script defines just a mode for rofi instead of being a self-contained
+# executable that launches rofi by itself. This makes it more flexible than
+# running rofi inside this script as now the user can call rofi as one pleases.
+# For instance:
+#   rofi -show switcher -modi switcher:./rofi-hyprland-switcher
+
+set -e
+set -u
+
+IFS=$'\n'
+hyprland_clients=$(hyprctl clients -j)
+window_titles=($(echo $hyprland_clients | jq -r '.[] | .title'))
+window_addrs=($(echo $hyprland_clients | jq -r '.[] | .address'))
+
+function get_pid_by_titles() {
+  window_title=$1
+  found="false"
+  for title_idx in "${!window_titles[@]}"; do
+    echo "$title_idx" "$window_title" "${window_titles[$title_idx]}" >&2
+    if [[ "$window_title" = "${window_titles[$title_idx]}" ]]; then
+      found="true"
+      echo "found window pid=${window_addrs[$title_idx]} of $window_title" >&2
+      echo "${window_addrs[$title_idx]}"
+      break
+    fi
+  done
+  if [[ "$found" = "false" ]]; then
+    echo "failed to get pid of window $window_title" >&2
+    exit 1
+  fi
+}
+
+function switch_to_window() {
+  window_title=$1
+  if [[ -z $window_title ]]; then
+    exit 1
+  fi
+  window_addr=$(get_pid_by_titles "$window_title")
+  echo hyprctl dispatcher focuswindow "address:$window_addr" >&2
+  hyprctl dispatcher focuswindow "address:$window_addr" >&2
+}
+
+selection="${@}"
+if [ -z "${selection}" ]; then
+  echo -e "\0prompt\x1f\Ufab1"
+  for title in "${window_titles[@]}"; do
+    echo "$title"
+  done
+else
+  switch_to_window "$selection"
+fi

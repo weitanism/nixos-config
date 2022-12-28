@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+set -e
+set -u
+
+# Available options.
+option_lock="🔒 lock screen"
+option_suspend="😪 suspend"
+option_hibernate="💤 hibernate"
+option_reboot="☀️ reboot"
+option_shutdown="🌚 shutdown"
+option_cancel="❌ cancel"
+
+# Menu passed to rofi.
+options="$option_lock\n$option_suspend\n$option_hibernate\n$option_reboot\n$option_shutdown\n$option_cancel"
+
+chosen="$(echo -e "$options" | rofi -dmenu -p "power")"
+case $chosen in
+  "$option_lock")
+    lockscreen
+    ;;
+  "$option_suspend")
+    lockscreen
+    systemctl suspend
+    ;;
+  "$option_hibernate")
+    lockscreen
+    systemctl hibernate
+    ;;
+  "$option_reboot")
+    systemctl reboot
+    ;;
+  "$option_shutdown")
+    systemctl poweroff
+    ;;
+  "$option_cancel")
+    exit 0
+    ;;
+esac

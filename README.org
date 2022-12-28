@@ -1,0 +1,101 @@
+* NixOS Config
+  My personal NixOS flake repo.
+
+** Directory Structure
+   This project is structured as follows:
+   - ~flake.nix~: flake file
+   - ~machine~: configuration for desktops
+   - ~server~: configuration for servers
+   - ~user~: configuration for users(home-manager)
+   - ~lib~: common utility nix function
+   - ~pkgs~: custom packages
+   - ~overlay~: overlays
+
+** Keybindings
+   My custom keybinds:
+   - ~Alt-o~: app launcher
+   - ~Alt-Shift-q~: kill current window/app
+   - ~Alt-h/j/k/l~: focus left/lower/upper/right window
+   - ~Alt-Shift-h/j/k/l~: move focused window to left/lower/upper/right
+   - ~Alt-[1-9]~: switch to workspace [1-9]
+   - ~Alt-p~: power menu(lock, poweroff, hibernate, etc.)
+   - ~Alt-Enter~: open new terminal
+   - ~Alt-Shift-Enter~: open new emacsclient
+   - ~Alt-u~: emoji selector
+
+   #+begin_quote
+   Note: complete list of keybind can be found at ~user/weitan/i3/config~.
+   #+end_quote
+
+** Installation Guide
+
+*** Install to a new machine
+    1. Follow disk partition and mounting steps from [[https://nixos.org/manual/nixos/stable/index.html#sec-installation][NixOS official document]]
+    2. Run ~nixos-generate-config --root /mnt~ to generate hardware configuration
+    3. Create config folder for new machine
+       #+begin_src shell
+         # First, drop to a shell with `git` available
+         nix-shell -p git
+
+         # Clone the repo
+         git clone https://github.com/weitanism/nixos-config.git /tmp/nixos
+         pushd /tmp/nixos
+         # Create machine config directory from template
+         cp -a machine/template machine/<your-machine-name>
+         # Copy hardware specific config files created in step 2
+         cp -a /mnt/etc/nixos/{configuration.nix,hardware-configuration.nix} machine/<your-machine-name>/
+         popd
+       #+end_src
+    4. Add a system config entry to ~nixosConfigurations~ in flake.nix, example:
+       #+begin_src nix
+         # A system named "framework" with "x86_64" CPU and default username
+         # "weitan"(will load user home-manager config defined in
+         # `user/weitan/home.nix`).
+         (mkSystem {
+           hostname = "framework";
+           username = "weitan";
+           system = "x86_64-linux";
+         })
+       #+end_src
+    5. Replace default configuration directory
+       #+begin_src shell
+         rm -r /mnt/etc/nixos
+         mv /tmp/nixos /mnt/etc/nixos
+       #+end_src
+    6. Build your system
+       #+begin_src shell
+         nixos-install --flake /mnt/etc/nixos#<your-machine-name>
+       #+end_src
+    7. Reboot
+
+** Software Configurations
+   Software enabled on my laptop for daily work:
+   - window manager: i3
+   - status bar: polybar
+   - editor: Emacs with evil-mode
+   - app launcher: rofi
+
+   Self-hosted services:
+   - Notification service: [[https://ntfy.sh][ntfy-sh]]
+   - Workflow service: [[https://nodered.org/][node-red]]
+
+*** Screenshot
+
+    #+CAPTION: Screenshot
+    #+ATTR_HTML: :width 800px
+    [[./screenshot.png]]
+
+** Hardware Configurations
+  + [[https://frame.work/][Framework]]
+    - CPU: 12th Gen Intel i7-1260P (16) @ 4.700GHz
+    - Memory: 64GiB
+    - Storage: 1TiB SSD
+  + ThinkPad X1 Nano Gen 1
+    - CPU: 11th Gen Intel i7-1160F7 (8) @ 4.4000GHz
+    - Memory: 16GiB
+    - Storage: 1TiB SSD
+  + VPS(DigitalOcean) for self-hosted services
+    - Type: Basic
+    - CPU: 1vCPU
+    - Memory: 512MB
+    - Storage: 0.5TiB SSD

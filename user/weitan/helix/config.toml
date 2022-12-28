@@ -1,0 +1,84 @@
+theme = "everforest_light"
+
+[editor]
+line-number = "absolute"
+mouse = false
+middle-click-paste = false
+idle-timeout = 0
+rulers = []
+color-modes = true
+scrolloff = 0
+
+[editor.statusline]
+left = ["mode", "file-name", "spinner"]
+center = []
+right = ["diagnostics", "selections", "position", "position-percentage",
+         "file-encoding", "file-line-ending", "file-type"]
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "block"
+
+[editor.file-picker]
+hidden = true
+# git-ignore = false
+
+[editor.whitespace.render]
+space = "none"
+tab = "all"
+newline = "none"
+
+[editor.whitespace.characters]
+space = "·"
+nbsp = "⍽"
+tab = "→"
+newline = "⏎"
+tabpad = "·"  # Tabs will look like "→···" (depending on tab width)
+
+[editor.indent-guides]
+render = true
+
+[keys.select]
+"+" = "expand_selection"
+"_" = "shrink_selection"
+G = "goto_last_line"
+"$" = "goto_line_end"
+0 = "goto_line_start"
+"{" = "goto_prev_paragraph"
+"}" = "goto_next_paragraph"
+[keys.select.space]
+"A-q" = ":reflow"
+";" = "toggle_comments"
+
+[keys.normal]
+K = "hover"
+"+" = "expand_selection"
+"_" = "shrink_selection"
+G = "goto_last_line"
+"$" = "goto_line_end"
+0 = "goto_line_start"
+"{" = "goto_prev_paragraph"
+"}" = "goto_next_paragraph"
+
+[keys.normal.space]
+F = "no_op"
+q = {q = ":q"}
+tab = "goto_last_accessed_file"
+space = "command_palette"
+"=" = ":format"
+";" = "toggle_comments"
+[keys.normal.space.f]
+f = "file_picker"
+F = "file_picker_in_current_directory"
+s = ":write"
+[keys.normal.space.f.e]
+d = ":config-open"
+r = ":config-reload"
+[keys.normal.space.b]
+b = "buffer_picker"
+d = ":buffer-close"
+r = ":reload"
+
+[keys.normal.space.w]
+d = "wclose"

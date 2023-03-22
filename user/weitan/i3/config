@@ -165,6 +165,9 @@ client.focused_inactive #373b41 #373b41 #969896 #282a2e
 client.unfocused #282a2e #282a2e #969896 #282a2e
 client.urgent #373b41 #cc6666 #ffffff #cc6666
 
+# Always focus activated window(new window, new browser tab, etc.).
+focus_on_window_activation focus
+
 # Window rules
 for_window [class="copyq"] floating enable
 for_window [class="copyq"] sticky enable

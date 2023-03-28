@@ -172,5 +172,8 @@ in
       kdenlive
       pitivi
       lightworks
+
+      # Blogging tools.
+      hugo
     ] ++ (if isWayland then waylandSpecificPackages else xorgSpecificPackages);
 }

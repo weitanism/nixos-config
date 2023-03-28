@@ -37,6 +37,8 @@ in
     org-contrib
     # Export org document in html format with colorized code blocks.
     htmlize
+    # Export org document for hugo.
+    ox-hugo
     # Window management
     golden-ratio
     # Editing

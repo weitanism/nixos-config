@@ -282,12 +282,12 @@
 
 (defun header-line/default-mode ()
   (let* ((path (or (spacemacs--projectile-file-path) (buffer-name)))
-         (location (header-line/tree-sitter-get-current-location)))
-    (header-line/compose
-     (ignore-errors
-       (header-line/buffer-status)
-       path
-       location))))
+         (location
+          (ignore-errors
+            (header-line/tree-sitter-get-current-location))))
+    (ignore-errors
+      (header-line/compose
+       (header-line/buffer-status) path location))))
 
 (defun setup-header-line ()
   "Install a header line whose content is dependend on the major mode"

@@ -45,7 +45,10 @@
 (defun setup-python-dev-tools ()
   (add-hook 'python-mode-hook 'blacken-mode)
   (add-hook 'python-mode-hook 'python-isort-on-save-mode)
-  (add-hook 'python-mode-hook 'python-autoflake-mode))
+  (add-hook 'python-mode-hook 'python-autoflake-mode)
+  (add-hook 'python-ts-mode-hook 'blacken-mode)
+  (add-hook 'python-ts-mode-hook 'python-isort-on-save-mode)
+  (add-hook 'python-ts-mode-hook 'python-autoflake-mode))
 
 (if (string= lsp-client "lsp-bridge")
     (progn

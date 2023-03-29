@@ -30,7 +30,26 @@
 ** Installation Guide
 
 *** Install to a new machine
-    1. Follow disk partition and mounting steps from [[https://nixos.org/manual/nixos/stable/index.html#sec-installation][NixOS official document]]
+    1. Partition, format and mount the disk(copied from [[https://nixos.org/manual/nixos/stable/index.html#sec-installation][NixOS official document]]):
+       #+begin_src shell
+         # Partition the disk.
+         # NOTE: replace /dev/sda with /dev/nvme0n1 if using a SSD.
+         parted /dev/sda -- mklabel gpt
+         parted /dev/sda -- mkpart primary 512MB -8GB
+         parted /dev/sda -- mkpart primary linux-swap -8GB 100%
+         parted /dev/sda -- mkpart ESP fat32 1MB 512MB
+         parted /dev/sda -- set 3 esp on
+
+         # Formatting the disk.
+         # NOTE: replace /dev/sdaX with /dev/nvme0n1pX if using a SSD.
+         mkfs.ext4 -L nixos /dev/sda1
+         mkswap -L swap /dev/sda2
+         swapon /dev/sda2
+         mkfs.fat -F 32 -n boot /dev/sda3
+         mount /dev/disk/by-label/nixos /mnt
+         mkdir -p /mnt/boot
+         mount /dev/disk/by-label/boot /mnt/boot
+       #+end_src
     2. Run ~nixos-generate-config --root /mnt~ to generate hardware configuration
     3. Create config folder for new machine
        #+begin_src shell
@@ -44,6 +63,7 @@
          cp -a machine/template machine/<your-machine-name>
          # Copy hardware specific config files created in step 2
          cp -a /mnt/etc/nixos/{configuration.nix,hardware-configuration.nix} machine/<your-machine-name>/
+         git add machine/<your-machine-name>/
          popd
        #+end_src
     4. Add a system config entry to ~nixosConfigurations~ in flake.nix, example:
@@ -57,14 +77,14 @@
            system = "x86_64-linux";
          })
        #+end_src
-    5. Replace default configuration directory
+    5. Build your system
+       #+begin_src shell
+         nixos-install --flake /tmp/nixos#<your-machine-name>
+       #+end_src
+    6. Replace default configuration directory
        #+begin_src shell
          rm -r /mnt/etc/nixos
          mv /tmp/nixos /mnt/etc/nixos
-       #+end_src
-    6. Build your system
-       #+begin_src shell
-         nixos-install --flake /mnt/etc/nixos#<your-machine-name>
        #+end_src
     7. Reboot
 

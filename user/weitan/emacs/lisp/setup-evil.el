@@ -98,8 +98,6 @@
   'counsel-rg-at-interactive-dir
   "sr"
   'ivy-resume
-  "sf"
-  'counsel-rg-at-interactive-dir
   "*"
   'counsel-projectile-rg-thing-at-point
   "/"

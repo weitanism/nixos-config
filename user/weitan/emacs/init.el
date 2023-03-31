@@ -1,4 +1,5 @@
 (add-to-list 'load-path "~/.emacs.d/lisp")
+(add-to-list 'load-path "~/.emacs.d/non-melpa")
 
 ;; Function declaration and default settings.
 (require 'setup-default-settings)

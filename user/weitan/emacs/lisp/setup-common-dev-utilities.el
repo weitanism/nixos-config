@@ -88,4 +88,17 @@
 
 (add-hook 'kill-buffer-hook #'add-file-to-killed-file-list)
 
+;; TODO: Setup sdcv following https://github.com/manateelazycat/sdcv
+(use-package
+ multi-translate
+ :config
+ (with-eval-after-load 'evil
+   (evil-define-key
+    nil
+    evil-normal-state-map
+    (kbd "C-t")
+    'multi-translate-at-point
+    (kbd "q")
+    'kill-buffer-and-window)))
+
 (provide 'setup-common-dev-utilities)

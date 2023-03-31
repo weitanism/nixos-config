@@ -104,4 +104,9 @@ in
     web-server
     websocket
     markdown-toc
+    # For multi-translate
+    bing-dict
+    google-translate
+    youdao-dictionary
+    sdcv
   ]))

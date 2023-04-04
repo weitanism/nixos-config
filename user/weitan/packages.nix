@@ -167,6 +167,7 @@ in
       emacs-all-the-icons-fonts
       pandoc
       universal-ctags
+      ispell
 
       # Media tools.
       kdenlive

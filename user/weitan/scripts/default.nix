@@ -114,6 +114,14 @@ let
   '';
 
   i3-focus-watcher = pkgs.writeShellScriptBin "i3-focus-watcher" ./i3-focus-watcher.fish;
+
+  os-rebuild-switch = pkgs.writeShellScriptBin "os-rebuild-switch" ''
+    pushd /etc/nixos
+    git add pkgs/miwork.nix
+    sudo env all_proxy=http://127.0.0.1:1080 nixos-rebuild --verbose switch
+    git reset pkgs/miwork.nix >/dev/null
+    popd
+  '';
 in
 {
   home.packages = [
@@ -126,5 +134,6 @@ in
     rg-replace
     install-rime-settings
     i3-focus-watcher
+    os-rebuild-switch
   ];
 }

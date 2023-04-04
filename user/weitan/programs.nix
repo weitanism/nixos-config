@@ -28,8 +28,8 @@
       enable = true;
       lfs.enable = true;
 
-      userName = "weitan";
-      userEmail = "chrisyunhua@gmail.com";
+      userName = "weitanism";
+      userEmail = "weitanism@pm.me";
 
       aliases = {
         co = "checkout";

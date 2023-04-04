@@ -112,6 +112,8 @@ let
     cd ~/workspace/plum
     rime_dir=$RIM_DIR bash rime-install iDvel/rime-ice:others/recipes/full
   '';
+
+  i3-focus-watcher = pkgs.writeShellScriptBin "i3-focus-watcher" ./i3-focus-watcher.fish;
 in
 {
   home.packages = [
@@ -123,5 +125,6 @@ in
     rofi-pactl
     rg-replace
     install-rime-settings
+    i3-focus-watcher
   ];
 }

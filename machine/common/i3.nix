@@ -11,6 +11,7 @@
     displayManager = {
       defaultSession = "none+i3";
       gdm.enable = true;
+      gdm.autoSuspend = false;
     };
 
     windowManager.i3 = {

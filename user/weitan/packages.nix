@@ -176,5 +176,9 @@ in
 
       # Blogging tools.
       hugo
+
+      # Reading tools.
+      okular
+      crow-translate
     ] ++ (if isWayland then waylandSpecificPackages else xorgSpecificPackages);
 }

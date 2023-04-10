@@ -77,5 +77,13 @@
       inherit pkgs;
       enable = osConfig.programs.hyprland.enable;
     };
+
+    zathura = {
+      enable = true;
+      options = {
+        selection-clipboard = "clipboard";
+        sandbox = "strict";
+      };
+    };
   };
 }

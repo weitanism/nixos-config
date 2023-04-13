@@ -134,5 +134,9 @@ handled appropriately."
 
 (use-package flyspell :config (setq flyspell-issue-message-flag nil))
 
+;; Colorize compile mode buffer.
+(use-package
+ ansi-color
+ :hook (compilation-filter . ansi-color-compilation-filter))
 
 (provide 'setup-common-dev-utilities)

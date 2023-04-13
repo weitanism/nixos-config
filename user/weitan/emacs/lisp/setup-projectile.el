@@ -8,6 +8,11 @@
  project
  :config
  (add-to-list
-  'project-find-functions 'my-projectile-project-find-function))
+  'project-find-functions 'my-projectile-project-find-function)
+
+ ;; Move `bazel-find-project' to the front of
+ ;; `project-find-functions'.
+ (delete 'bazel-find-project project-find-functions)
+ (add-to-list 'project-find-functions 'bazel-find-project))
 
 (provide 'setup-projectile)

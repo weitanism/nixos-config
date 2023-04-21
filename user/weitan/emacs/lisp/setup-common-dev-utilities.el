@@ -101,8 +101,8 @@
  :config
  (with-eval-after-load 'evil
    (evil-define-key
-    nil
-    evil-normal-state-map
+    'normal
+    multi-translate-mode-map
     (kbd "C-t")
     'multi-translate-at-point
     (kbd "q")

@@ -20,6 +20,13 @@
   ivy-minibuffer-map (kbd "C-<return>") 'ivy-immediate-done))
 
 (use-package counsel)
+(use-package counsel-projectile)
+
+(use-package
+ all-the-icons-ivy-rich
+ :config (all-the-icons-ivy-rich-mode 1))
+
+(use-package ivy-rich :config (ivy-rich-mode 1))
 
 (use-package
  which-key

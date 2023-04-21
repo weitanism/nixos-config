@@ -14,6 +14,8 @@ in
     flycheck
     ivy
     ivy-hydra
+    ivy-rich
+    all-the-icons-ivy-rich
     flx
     magit
     forge

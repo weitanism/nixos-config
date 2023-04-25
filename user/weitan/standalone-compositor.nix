@@ -20,6 +20,7 @@ in
 
       "100:class_g = 'Rofi'"
       "100:class_g = 'Chromium-browser'"
+      "100:class_g = 'Bytedance-feishu'"
     ];
     settings = {
       corner-radius = 12.0;

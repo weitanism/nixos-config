@@ -14,6 +14,13 @@
   ];
   boot.kernel.sysctl = { "vm.swappiness" = 1; };
 
+  # ref1: https://nixos.wiki/wiki/Logind
+  # ref2: https://wiki.archlinux.org/title/Power_management#ACPI_events
+  services.logind.extraConfig = ''
+    # don’t shutdown when power button is short-pressed
+    HandlePowerKey=suspend
+  '';
+
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 

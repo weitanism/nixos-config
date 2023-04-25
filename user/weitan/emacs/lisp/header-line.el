@@ -281,11 +281,11 @@
       "RW"))))
 
 (defun header-line/default-mode ()
-  (let* ((path (or (spacemacs--projectile-file-path) (buffer-name)))
-         (location
-          (ignore-errors
-            (header-line/tree-sitter-get-current-location))))
-    (ignore-errors
+  (ignore-errors
+    (let* ((path (or (spacemacs--projectile-file-path) (buffer-name)))
+           (location
+            (ignore-errors
+              (header-line/tree-sitter-get-current-location))))
       (header-line/compose
        (header-line/buffer-status) path location))))
 

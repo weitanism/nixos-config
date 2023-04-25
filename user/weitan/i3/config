@@ -89,7 +89,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+# bindsym $mod+d focus child
 
 # move the currently focused window to the scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -188,12 +188,13 @@ exec --no-startup-id systemctl --user start clash
 exec --no-startup-id systemctl --user restart emacs.service
 exec --no-startup-id copyq >/tmp/copyq.log 2>&1
 exec_always --no-startup-id feh --bg-fill ~/.config/wallpaper.png
+exec --no-startup-id xborders --smart-hide-border --border-width 2 --border-radius 12 --border-rgba '#00ccccaa'
 
 # i3-gaps
 default_border pixel 0
-gaps inner 10
+gaps inner 15
 gaps outer -10
-gaps top 0
+gaps top -10
 smart_gaps on
 smart_borders on
 hide_edge_borders smart_no_gaps

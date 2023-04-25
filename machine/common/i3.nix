@@ -16,7 +16,7 @@
 
     windowManager.i3 = {
       enable = true;
-      package = pkgs.i3-gaps;
+      package = pkgs.i3;
     };
 
     libinput = {
@@ -33,5 +33,6 @@
     killall
     i3-easyfocus
     i3lock-color
+    xborders
   ];
 }

@@ -159,9 +159,6 @@ in
       # Paper tools.
       texlive.combined.scheme-small
 
-      # Rime Schema Repository
-      brise
-
       # Emacs
       emacs
       emacs-all-the-icons-fonts

@@ -18,9 +18,6 @@ in
         fcitx5-configtool
         fcitx5-gtk
       ];
-      fcitx.engines = with pkgs.fcitx-engines; [
-        rime
-      ];
     };
   };
 

@@ -122,6 +122,9 @@ let
     git reset pkgs/miwork.nix >/dev/null
     popd
   '';
+
+  download-nasa-apod-as-wallpaper = pkgs.writeShellScriptBin
+    "download-nasa-apod-as-wallpaper" ./download-nasa-apod-as-wallpaper.fish;
 in
 {
   home.packages = [
@@ -135,5 +138,6 @@ in
     install-rime-settings
     i3-focus-watcher
     os-rebuild-switch
+    download-nasa-apod-as-wallpaper
   ];
 }

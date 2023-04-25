@@ -187,7 +187,8 @@ exec --no-startup-id nm-applet
 exec --no-startup-id systemctl --user start clash
 exec --no-startup-id systemctl --user restart emacs.service
 exec --no-startup-id copyq >/tmp/copyq.log 2>&1
-exec_always --no-startup-id feh --bg-fill ~/.config/wallpaper.png
+exec --no-startup-id feh --bg-fill ~/.config/wallpaper.png
+exec --no-startup-id download-nasa-apod-as-wallpaper >/tmp/download-nasa-apod-as-wallpaper.log 2>&1
 exec --no-startup-id xborders --smart-hide-border --border-width 2 --border-radius 12 --border-rgba '#00ccccaa'
 
 # i3-gaps

@@ -1,4 +1,8 @@
 * NixOS Config
+  #+BEGIN_QUOTE
+  This repo has been migrated to [[https://git.sr.ht/~weitanism/nixos-config][~weitanism/nixos-config]].
+  #+END_QUOTE
+
   My personal NixOS flake repo.
 
 ** Directory Structure
